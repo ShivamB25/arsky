@@ -47,17 +47,13 @@ arsky -c path/to/your/image.png
 This command will create and display ASCII art from the specified image file.
 
 ### More Options and Help
+
 For more options and detailed usage instructions, you can use the --help flag with any command:
 
 ## Contributing
+
 Contributions are welcome! If you encounter any bugs, have suggestions for new features, or want to contribute code, please feel free to open an issue or submit a pull request.
 
 ## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-
-
-
-
-
-
