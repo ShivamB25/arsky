@@ -4,6 +4,12 @@ const chalk = require("chalk");
 const axios = require("axios");
 const sharp = require("sharp");
 const boxen = require("boxen");
+const { program } = require('commander');
+const packageJson = require('../package.json'); // Adjust path as needed
+
+program.version(packageJson.version);
+
+program.parse(process.argv);
 
 const pathMap = {
   a: "ab",
@@ -150,6 +156,8 @@ async function generateAsciiArt(imagePath, maxWidth = 90) {
 async function main() {
   var text = yargs.argv.g || yargs.argv.get;
   var imgPath = yargs.argv.c || yargs.argv.create;
+  var ver = yargs.argv.v
+
 
   if (text == null && imgPath == null) {
     showHelp();
@@ -164,6 +172,13 @@ async function main() {
   if (imgPath !== null && imgPath !== undefined) {
     generateAsciiArt(imgPath, 90);
     return;
+  }
+
+  if(ver !== null && ver !== undefined){
+    program.version(packageJson.version);
+
+    console.log( program.version)
+
   }
 }
 
