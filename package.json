@@ -1,5 +1,5 @@
 {
-  "name": "ar-sky",
+  "name": "arsky",
   "version": "1.0.0",
   "description": "A CLI tool to fetch ASCII art or create your own from imagepath",
   "main": "./bin/index.js",
