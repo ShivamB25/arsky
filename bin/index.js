@@ -103,7 +103,7 @@ async function getAscii(input) {
       // console.error('Error fetching art!');
     });
 }
-async function generateAsciiArt(imagePath, maxWidth = 80) {
+async function generateAsciiArt(imagePath, maxWidth = 90) {
   try {
     // This will resize the image and convert it to grayscale and then to raw which converts it to pixel value buffer from 0 to 255
     const { data, info } = await sharp(imagePath)
@@ -162,7 +162,7 @@ async function main() {
   }
 
   if (imgPath !== null && imgPath !== undefined) {
-    generateAsciiArt(imgPath, 80);
+    generateAsciiArt(imgPath, 90);
     return;
   }
 }

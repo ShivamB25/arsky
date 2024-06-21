@@ -1,7 +1,7 @@
 {
   "name": "ar-sky",
   "version": "1.0.0",
-  "description": "",
+  "description": "A CLI tool to fetch ASCII art or create your own from imagepath",
   "main": "./bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,6 @@
     "axios": "^1.7.2",
     "boxen": "^2.1.0",
     "chalk": "^4.1.2",
-    "cheerio": "^1.0.0-rc.12",
     "sharp": "^0.33.4",
     "yargs": "^17.7.2"
   }
