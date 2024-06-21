@@ -105,7 +105,7 @@ async function getAscii(input) {
 }
 async function generateAsciiArt(imagePath, maxWidth = 80) {
   try {
-    // Resize the image and convert it to grayscale
+    // This will resize the image and convert it to grayscale and then to raw which converts it to pixel value buffer from 0 to 255
     const { data, info } = await sharp(imagePath)
       .resize({ width: maxWidth, withoutEnlargement: true }) // Maintain aspect ratio
       .greyscale()
@@ -114,34 +114,31 @@ async function generateAsciiArt(imagePath, maxWidth = 80) {
 
     const { width, height } = info;
 
-    // Define the characters to represent different intensities (more detailed)
     const characters = 
       " .`'^\",:;Il!i<>~+_-?][}{1()|/ftjxrnuvcXzYUJCLQ0OZmwpqbdkhao*#MW&8%B@$";
     const numChars = characters.length - 1;
 
-    // Initialize empty ASCII art string
     let asciiArt = '';
 
     // Iterate through each pixel row
-    for (let y = 0; y < height; y += 2) { // Adjusting y increment to compress vertically
+    for (let y = 0; y < height; y += 2) { // Adjusting y to compress vertically
       // Iterate through each pixel column
       for (let x = 0; x < width; x++) {
-        // Calculate the index of the pixel in the raw data buffer
+        // Calculate the index of the pixel in the raw data buffer to make it 2d
         const pixelIndex = y * width + x;
 
-        // Get grayscale pixel value (0-255)
+        // Get grayscale pixel value (0-255) from converted buffer
         const pixelBrightness = data[pixelIndex];
 
-        // Calculate corresponding character based on pixel brightness
+        // Calculate corresponding character from list based on pixel brightness
         const charIndex = Math.floor((pixelBrightness / 255) * numChars);
 
-        // Append character to ASCII art string
         asciiArt += characters[charIndex];
       }
-      asciiArt += '\n'; // Newline after each row of ASCII characters
+      asciiArt += '\n'; // Newline after each row
     }
 
-    // Output the ASCII art to console or save to file
+    // Output the ASCII art to console
     console.log(asciiArt);
 
   } catch (err) {
@@ -165,7 +162,7 @@ async function main() {
   }
 
   if (imgPath !== null && imgPath !== undefined) {
-    generateAsciiArt(imgPath, 50);
+    generateAsciiArt(imgPath, 80);
     return;
   }
 }
