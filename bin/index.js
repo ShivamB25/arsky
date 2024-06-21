@@ -7,9 +7,7 @@ const boxen = require("boxen");
 const { program } = require('commander');
 const packageJson = require('../package.json'); // Adjust path as needed
 
-program.version(packageJson.version);
 
-program.parse(process.argv);
 
 const pathMap = {
   a: "ab",
@@ -56,8 +54,7 @@ const options = yargs
     describe: "Input path to create art",
     type: "string",
     demandOption: false,
-  })
-  .help(true).argv;
+  }).help(true).argv;
 
 const argv = require("yargs/yargs")(process.argv).argv;
 
@@ -156,8 +153,6 @@ async function generateAsciiArt(imagePath, maxWidth = 90) {
 async function main() {
   var text = yargs.argv.g || yargs.argv.get;
   var imgPath = yargs.argv.c || yargs.argv.create;
-  var ver = yargs.argv.v
-
 
   if (text == null && imgPath == null) {
     showHelp();
@@ -174,12 +169,6 @@ async function main() {
     return;
   }
 
-  if(ver !== null && ver !== undefined){
-    program.version(packageJson.version);
-
-    console.log( program.version)
-
-  }
 }
 
 main();
