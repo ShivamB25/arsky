@@ -1,16 +1,5 @@
 # ArSky
 
-     **             ******** **             
-    ****           **////// /**      **   **
-   **//**   ******/**       /**  ** //** ** 
-  **  //** //**//*/*********/** **   //***  
- ********** /** / ////////**/****     /**   
-/**//////** /**          /**/**/**    **    
-/**     /**/***    ******** /**//**  **     
-//      // ///    ////////  //  //  //      
-
-
-
 ArSky is a powerful and easy-to-use Node.js CLI tool for generating or fetching ASCII art. Using this tool, you can either get ASCII art for any word you write or create your own by providing the path to an image.
 
 ## Features
