@@ -4,10 +4,6 @@ const chalk = require("chalk");
 const axios = require("axios");
 const sharp = require("sharp");
 const boxen = require("boxen");
-const { program } = require('commander');
-const packageJson = require('../package.json'); // Adjust path as needed
-
-
 
 const pathMap = {
   a: "ab",
@@ -54,7 +50,14 @@ const options = yargs
     describe: "Input path to create art",
     type: "string",
     demandOption: false,
-  }).help(true).argv;
+  })
+  .option("-s", {
+    alias: "search",
+    describe: "Input text to search & generate art",
+    type: "string",
+    demandOption: false,
+  })
+  .help(true).argv;
 
 const argv = require("yargs/yargs")(process.argv).argv;
 
@@ -62,12 +65,21 @@ function showHelp() {
   console.log(asciiArtHeader);
   console.log(usage);
   console.log("\nOptions:\r");
-  console.log(`\t--version\t      Show version number \t\t[boolean]\r`);
-  console.log(`\t-g, --get\t      Get ASCII image from the web\t[string]\r`);
   console.log(
-    `\t-c, --create\t      Create new from your image path\t[string]\r`
+    `\t--version\t  Show version number                 \t[boolean]\r`
   );
-  console.log(`\t--help\t\t      Show help.\t\t\t[boolean]\n`);
+  console.log(
+    `\t-g, --get\t  Get ASCII image from the web        \t[string]\r`
+  );
+  console.log(
+    `\t-c, --create\t  Create new from your image path      \t[string]\r`
+  );
+  console.log(
+    `\t-s, --search\t  Search & generate ASCII image from google\t[string]\r`
+  );
+  console.log(
+    `\t--help\t\t  Show help.                          \t[boolean]\n`
+  );
 }
 
 const getUrlPath = (input) => {
@@ -117,14 +129,15 @@ async function generateAsciiArt(imagePath, maxWidth = 90) {
 
     const { width, height } = info;
 
-    const characters = 
+    const characters =
       " .`'^\",:;Il!i<>~+_-?][}{1()|/ftjxrnuvcXzYUJCLQ0OZmwpqbdkhao*#MW&8%B@$";
     const numChars = characters.length - 1;
 
-    let asciiArt = '';
+    let asciiArt = "";
 
     // Iterate through each pixel row
-    for (let y = 0; y < height; y += 2) { // Adjusting y to compress vertically
+    for (let y = 0; y < height; y += 2) {
+      // Adjusting y to compress vertically
       // Iterate through each pixel column
       for (let x = 0; x < width; x++) {
         // Calculate the index of the pixel in the raw data buffer to make it 2d
@@ -138,23 +151,34 @@ async function generateAsciiArt(imagePath, maxWidth = 90) {
 
         asciiArt += characters[charIndex];
       }
-      asciiArt += '\n'; // Newline after each row
+      asciiArt += "\n"; // Newline after each row
     }
 
     // Output the ASCII art to console
     console.log(asciiArt);
-
   } catch (err) {
-    console.error('Error generating ASCII art:', err);
+    console.error("Error generating ASCII art:", err);
   }
 }
 
+async function searchKeyWord(keyword) {
+  const url = `https://www.google.com/search?q=${keyword}&gl=us&hl=en`;
+  let headers = {
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 6.3; Win64; x64)   AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36 Viewer/96.9.4688.89",
+  };
+  axios
+    .get(url, headers)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+}
 
 async function main() {
   var text = yargs.argv.g || yargs.argv.get;
   var imgPath = yargs.argv.c || yargs.argv.create;
+  var searchKey = yargs.argv.s || yargs.argv.search;
 
-  if (text == null && imgPath == null) {
+  if (text == null && imgPath == null && searchKey == null) {
     showHelp();
     return;
   }
@@ -168,7 +192,10 @@ async function main() {
     generateAsciiArt(imgPath, 90);
     return;
   }
-
+  if (searchKey !== null && searchKey !== undefined) {
+    searchKeyWord(searchKey);
+    return;
+  }
 }
 
 main();
