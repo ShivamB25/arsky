@@ -1,4 +1,3 @@
-
 # ArSky
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -103,7 +102,7 @@ npm test
 
 ### Linting and Formatting
 
-This project uses ESLint for linting and Prettier for code formatting. 
+This project uses ESLint for linting and Prettier for code formatting.
 
 To run the linter:
 
@@ -157,4 +156,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Sharp](https://sharp.pixelplumbing.com/) for high-performance image processing
 - [Commander.js](https://github.com/tj/commander.js/) for command-line interface support
 - All the contributors who have helped shape ArSky
-
