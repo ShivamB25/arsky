@@ -1,9 +1,23 @@
+
 # ArSky
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js CI](https://github.com/yourusername/arsky/actions/workflows/node.js.yml/badge.svg)](https://github.com/yourusername/arsky/actions/workflows/node.js.yml)
+[![npm version](https://badge.fury.io/js/arsky.svg)](https://badge.fury.io/js/arsky)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.5%2B-blue)](https://www.typescriptlang.org/)
 
 ArSky is a powerful and easy-to-use Node.js CLI tool for generating or fetching ASCII art. With ArSky, you can either retrieve ASCII art for any word or create your own from an image file.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Development](#development)
+- [Contributing](#contributing)
+- [Troubleshooting](#troubleshooting)
+- [Changelog](#changelog)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
 ## Features
 
@@ -12,6 +26,7 @@ ArSky is a powerful and easy-to-use Node.js CLI tool for generating or fetching 
 - TypeScript support for enhanced type safety and developer experience
 - Comprehensive test suite using Jest
 - Consistent code style with ESLint and Prettier
+- Cross-platform compatibility (Windows, macOS, Linux)
 
 ## Installation
 
@@ -24,7 +39,7 @@ npm install -g arsky
 For local development:
 
 ```sh
-git clone https://github.com/yourusername/arsky.git
+git clone https://github.com/ArgonautAli/arsky
 cd arsky
 npm install
 ```
@@ -37,6 +52,8 @@ ArSky can be used with the following options:
 
 - `-g, --get <text>`: Input text to get ASCII art
 - `-c, --create <path>`: Input path to an image file to create ASCII art
+- `-v, --version`: Display the current version of ArSky
+- `-h, --help`: Display help information
 
 ### Examples
 
@@ -59,6 +76,11 @@ arsky --help
 ```
 
 ## Development
+
+### Prerequisites
+
+- Node.js (version 14 or higher)
+- npm (version 6 or higher)
 
 ### Available Scripts
 
@@ -113,6 +135,18 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 Please ensure your code adheres to the existing style by using the provided ESLint and Prettier configurations.
 
+### Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+## Troubleshooting
+
+If you encounter any issues, please check the [FAQ](FAQ.md) or open an issue in the GitHub repository.
+
+## Changelog
+
+For a detailed list of changes and version history, please refer to the [CHANGELOG](CHANGELOG.md).
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -121,3 +155,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [ASCII Art Archive](https://www.asciiart.eu/) for providing a vast collection of ASCII art
 - [Sharp](https://sharp.pixelplumbing.com/) for high-performance image processing
+- [Commander.js](https://github.com/tj/commander.js/) for command-line interface support
+- All the contributors who have helped shape ArSky
+
