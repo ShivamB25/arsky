@@ -2,9 +2,9 @@
   "name": "arsky",
   "version": "1.0.8",
   "description": "A CLI tool to fetch ASCII art or create your own from imagepath",
-  "main": "./bin/index.ts",
+  "main": "dist/index.js",
   "bin": {
-    "arsky": "./bin/index.ts"
+    "arsky": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
