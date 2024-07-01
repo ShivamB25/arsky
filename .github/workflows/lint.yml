@@ -1,0 +1,51 @@
+name: Lint
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install -g prettier eslint stylelint
+
+      - name: Super-Linter
+        uses: github/super-linter@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_CSS: true
+          VALIDATE_HTML: true
+          VALIDATE_YAML: true
+          VALIDATE_JSON: true
+          VALIDATE_MARKDOWN: true
+
+      - name: Run ESLint
+        run: npx eslint '**/*.{js,jsx,ts,tsx}' --max-warnings=0
+
+      - name: Run Prettier
+        run: npx prettier --check '**/*.{js,jsx,ts,tsx,css,md,yml,yaml,json}'
+
+      - name: Check for trailing whitespace and newlines
+        run: |
+          ! grep -rn '[[:blank:]]$' --exclude-dir={.git,node_modules} .
+          ! find . -type f -not -path '*/\.git/*' -not -path '*/node_modules/*' -print0 | xargs -0 -L1 bash -c 'test "$(tail -c 1 "$0")" && echo "No newline at end of $0"'
