@@ -1,6 +1,6 @@
 {
   "name": "arsky",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A CLI tool to fetch ASCII art or create your own from imagepath",
   "main": "./bin/index.ts",
   "bin": {
