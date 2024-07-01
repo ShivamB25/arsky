@@ -3,10 +3,10 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import boxen from 'boxen';
-import { getAscii } from './services/asciiArtService';
-import { generateAsciiArt } from './services/imageService';
-import logger from './utils/logger';
-import { ASCII_ART_HEADER } from './config/constants';
+import { getAscii } from '../src/services/asciiArtService';
+import { generateAsciiArt } from '../src/services/imageService';
+import logger from '../src/utils/logger';
+import { ASCII_ART_HEADER } from '../src/config/constants';
 
 const program = new Command();
 
