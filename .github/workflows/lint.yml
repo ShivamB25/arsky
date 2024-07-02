@@ -40,6 +40,7 @@ jobs:
           auto_fix: true
           eslint_extensions: js,jsx,ts,tsx
           prettier_extensions: js,jsx,ts,tsx,css,md,yml,yaml,json
+          commit_message: "style: fix code style issues with Prettier"
 
       - name: Check for trailing whitespace and newlines
         run: |
