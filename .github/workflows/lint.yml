@@ -10,10 +10,24 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+      issues: write
+      statuses: write
+      actions: write
+      packages: write
+      deployments: write
+      discussions: write
+      pages: write
+      repository-projects: write
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -40,9 +54,19 @@ jobs:
           auto_fix: true
           eslint_extensions: js,jsx,ts,tsx
           prettier_extensions: js,jsx,ts,tsx,css,md,yml,yaml,json
-          commit_message: "style: fix code style issues with Prettier"
+          commit_message: "style: fix code style issues with ESLint and Prettier"
+          git_name: "GitHub Actions"
+          git_email: "actions@github.com"
+          eslint_args: "--max-warnings=0"
+          prettier_args: "--write"
 
       - name: Check for trailing whitespace and newlines
         run: |
           ! grep -rn '[[:blank:]]$' --exclude-dir={.git,node_modules} .
           ! find . -type f -not -path '*/\.git/*' -not -path '*/node_modules/*' -print0 | xargs -0 -L1 bash -c 'test "$(tail -c 1 "$0")" && echo "No newline at end of $0"'
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: fix code style issues"
+          file_pattern: "**/*.{js,jsx,ts,tsx,css,md,yml,yaml,json}"
