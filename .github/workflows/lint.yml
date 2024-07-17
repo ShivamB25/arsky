@@ -10,6 +10,11 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+      workflows: write
 
     steps:
       - name: Checkout code
